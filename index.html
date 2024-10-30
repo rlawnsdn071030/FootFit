@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+    <title>Foot-fit</title>
+</head>
+<body>
+    <header class="head">
+        <img src="Nike.png" alt="logo" id="logo" />
+        <nav class="navi">
+            <ul>
+                <li>Home</li>
+                <li>Shop</li>
+                <li>Shoes</li>
+                <li>More</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="black-box">
+            <div class="first-box">
+                <p>33 에어맥스 디자인</p>
+                <h1 style="font-size: 2.25rem; line-height: 1rem;">33 Airmax</h1>
+                <p>333,000 KRW 부터</p>
+                <div style="width: 900px; height: 350px; margin: 50px auto; background-color: #f0f0f0; text-align: center; border-radius: 20px; background: rgb(47,47,52);
+            background: linear-gradient(180deg, rgba(47,47,52,1) 0%, rgba(85,85,94,1) 42%, rgba(182,199,203,1) 100%);">
+                    <canvas id="canvas" width="550" height="400"></canvas>
+                </div>
+            </div>
+            <div class="second-box">
+                <div class="second-title">
+                    <h2 class="title">시대를 초월한<br/> 디자인의 현대적인<br/> 해석.</h2>
+                    <p>33 에어맥스는 시대를 초월한 미래 지향적인 디자인이 특징입니다. 1987년 이후부터 나이키의 상징이었습니다.</p>
+                </div>
+                <!-- open with live server로 실행해야 동작함. -->
+                <div style="width: 650px; height: 350px;">
+                    <canvas id="canvas2" width="650" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+        <section class="third-box">
+            <h1 style="font-size: 2.25rem;">33 에어맥스 자세히 알아보기.</h1>
+            <div class="car-box">
+                <button class="detail-btn">
+                    <h1 class="detail-title">디자인</h1>
+                    <p class="detail-desc">디자인에 대해 자세히 알아보십시오.</p>
+                </button>
+                <button class="detail-btn">
+                    <h1>퍼포먼스</h1>
+                    <p>인상적인 퍼포먼스를 확인해보십시오.</p>
+                </button>
+                <button class="detail-btn">
+                    <h1>편안함</h1>
+                    <p>비교할 수 없는 편안함을 경험해보십시오</p>
+                </button>
+                <button class="detail-btn">
+                    <h1>33</h1>
+                    <p>왜 '33'이 훨씬 더 Airmax다운 특성을 의미하는지 그 이유를 확인해보십시오.</p>
+                </button>
+                <button class="detail-btn">
+                    <h1>33 Airmax 디자인</h1>
+                    <p>33 Airmax 디자인 모델에 대해 자세히 알아보십시오.</p>
+                </button>
+            </div>
+        </section>
+        <div style="position: relative;">
+            <div class="custom-shape-divider-top-1686559789">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </div>
+        <section class="fourth-box">
+            <div class="fourth-title">
+                <h1>갤러리</h1>
+            </div>            
+            <div class="image-box">
+                <img src="images/Nike1.png" alt="car1" class="image image1" />
+                <img src="images/Nike2.png" alt="car2" class="image image2" />
+                <img src="images/Nike3.png" alt="car3" class="image image3" />
+                <img src="images/Nike4.png" alt="car4" class="image image4" />
+                <img src="images/Nike5.png" alt="car5" class="image image5" />
+                <img src="images/Nike6.png" alt="car6" class="image image6" />
+            </div>
+        </section>
+        
+
+        
+    </main>
+    
+    <!-- npm으로 설치한 것처럼 사용가능~ -->
+    <!-- 리액트 프로젝트라면 npm install three -->
+    <script type="importmap"> 
+        {
+            "imports": {
+              "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+              "GLTFLoader" : "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js"
+            }
+          }
+    </script>
+    <!-- 리액트P: import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader' -->
+    <script type="module">
+        import { GLTFLoader } from 'GLTFLoader';
+        import * as THREE from 'three';
+
+        // 3D model 브라우저에 보여주는 법 1. 장면 만들고 2. 브라우저에 렌딩해주세요
+        let scene1 = new THREE.Scene();
+        let renderer1 = new THREE.WebGLRenderer({
+            canvas : document.querySelector('#canvas'),
+            antialias : true, // 테두리 계단현상(픽셀 깨짐) 보완
+            alpha: true // 배경 투명하게
+        });
+        // 3D model 보여줄 때 필요한 것들
+        // 1.카메라 2.조명 3.배경
+        let camera1 = new THREE.PerspectiveCamera(50, 1.2);
+        camera1.position.set(0,0,5);
+        // 조명 종류 : AmbientLight, PointLight, DirectionalLight
+        let light1 = new THREE.DirectionalLight(0xc5dafa, 15);
+        scene1.add(light1);
+        scene1.background = null;
+        renderer1.outputEncoding = THREE.sRGBEncoding;
+        renderer1.setClearColor( 0x000000, 0 ); //배경 투명하게
+        
+        // PerspectiveCamera - 원근법 O
+        // OrthographicCamera - 원근법 무시
+        let loader1 = new GLTFLoader();
+        loader1.load('Footfit/scene.gltf', function(gltf) { 
+            scene1.add(gltf.scene);
+            renderer1.render(scene1, camera1);
+
+            function animate1() {
+                requestAnimationFrame(animate1)
+                gltf.scene.rotation.y -= 0.008;
+                renderer1.render(scene1, camera1);
+            }
+            animate1();
+            // 마우스컨트롤 필요 시- Three.js 내 OrbitControl 가져다 쓰기!!
+        })
+        // 두번째 - 디테일
+        let scene2 = new THREE.Scene();
+        let renderer2 = new THREE.WebGLRenderer({
+            canvas : document.querySelector('#canvas2'),
+            antialias : true,
+            alpha: true
+        });
+        let camera2 = new THREE.PerspectiveCamera(40, 1.5);
+        camera2.position.set(0,0,3);
+        
+        let light2 = new THREE.DirectionalLight(0xc5dafa, 12);
+        scene2.add(light2);
+        scene2.background = null;
+        renderer2.outputEncoding = THREE.sRGBEncoding;
+        renderer2.setClearColor( 0x000000, 0 );
+
+        let loader2 = new GLTFLoader();
+        loader2.load('Footfit/scene.gltf', function(gltf) {
+            scene2.add(gltf.scene);
+            renderer2.render(scene2, camera2);
+            function animate2() {
+                requestAnimationFrame(animate2)
+                gltf.scene.rotation.y -= 0.004;
+                renderer2.render(scene2, camera2);
+            }
+            animate2();
+        })
+    </script>
+</body>
+</html>
